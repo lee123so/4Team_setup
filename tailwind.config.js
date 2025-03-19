@@ -1,10 +1,10 @@
 import { heroui } from "@heroui/theme";
-
+import {hero_ui_config} from "./src/config/hero_ui_config.ts"
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
@@ -16,5 +16,5 @@ export default {
     },
   },
   darkMode: "class",
-  plugins: [heroui()],
+  plugins: [heroui(hero_ui_config)],
 };

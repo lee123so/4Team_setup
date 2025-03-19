@@ -46,7 +46,7 @@ export default function Home() {
 
       <div className="mt-8">
         <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
+          <span className=" text-primary-foreground">
             Get started by editing <Code color="primary">app/page.tsx</Code>
           </span>
         </Snippet>
