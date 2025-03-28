@@ -1,56 +1,68 @@
-import { Link } from "@heroui/link";
-import { Snippet } from "@heroui/snippet";
-import { Code } from "@heroui/code";
-import { button as buttonStyles } from "@heroui/theme";
+'use client';
 
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+import { useEffect, useState } from 'react';
+import { addToast } from '@heroui/toast';
+import { CheckboxGroup } from '@heroui/react';
+
+import { MyButton } from '@/components/atoms/Button';
+import useToast from '@/hooks/useToast';
+import { MyInput } from '@/components/atoms/Input';
+import { MyCheckbox } from '@/components/atoms/CheckBox';
+// import Loading from '@/app/Loading';
 
 export default function Home() {
+  const { showToast } = useToast();
+  const [selected, setSelected] = useState();
+
+  useEffect(() => {
+    // showToast({ title: 'Welcome', description: 'me', lazy: true });
+    console.log(selected);
+  }, [selected]);
+
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-xl text-center justify-center">
-        <span className={title()}>Make&nbsp;</span>
-        <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
-        <br />
-        <span className={title()}>
-          websites regardless of your design experience.
-        </span>
-        <div className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
-        </div>
-      </div>
+    <>
+      <MyButton
+        color="main"
+        size="full"
+        onPress={() =>
+          addToast({
+            title: 'Toast title',
+            description: 'Toast displayed successfully',
+            color: 'primary',
+          })
+        }
+      >
+        버튼
+      </MyButton>
+      <div className="absolute ">d</div>
+      <MyInput size="md" />
 
-      <div className="flex gap-3">
-        <Link
-          isExternal
-          className={buttonStyles({
-            color: "primary",
-            radius: "full",
-            variant: "shadow",
-          })}
-          href={siteConfig.links.docs}
-        >
-          Documentation
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
-        </Link>
-      </div>
+      {/* <MyListBox variant="test">
+        <MyListboxItem>ff</MyListboxItem>
+        <MyListboxItem>ff</MyListboxItem>
 
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span className=" text-primary-foreground">
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
-      </div>
-    </section>
+        <MyListboxItem>ff</MyListboxItem>
+
+        <MyListboxItem>ff</MyListboxItem>
+        <MyListboxItem>ff</MyListboxItem>
+      </MyListBox> */}
+      <CheckboxGroup
+        color="warning"
+        label="Select cities"
+        value={selected}
+        onValueChange={() => setSelected}
+      >
+        <MyCheckbox color="test" name="11:00" radius="bg_sm" value={'1'}>
+          11:00
+        </MyCheckbox>
+        <MyCheckbox color="test" name="11:00" radius="bg_sm" value={'2'}>
+          12:00
+        </MyCheckbox>
+        <MyCheckbox color="test" name="11:00" radius="bg_sm" value={'3'}>
+          13:00
+        </MyCheckbox>
+      </CheckboxGroup>
+      {/* <Loading /> */}
+    </>
   );
 }
