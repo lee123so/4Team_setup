@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { addToast } from '@heroui/toast';
-import { CheckboxGroup } from '@heroui/react';
+import { Card } from '@heroui/react';
 
 import { MyButton } from '@/components/atoms/Button';
 import useToast from '@/hooks/useToast';
@@ -12,7 +12,7 @@ import { MyCheckbox } from '@/components/atoms/CheckBox';
 
 export default function Home() {
   const { showToast } = useToast();
-  const [selected, setSelected] = useState();
+  const [selected, setSelected] = useState<string>('');
 
   useEffect(() => {
     // showToast({ title: 'Welcome', description: 'me', lazy: true });
@@ -46,22 +46,25 @@ export default function Home() {
         <MyListboxItem>ff</MyListboxItem>
         <MyListboxItem>ff</MyListboxItem>
       </MyListBox> */}
-      <CheckboxGroup
-        color="warning"
-        label="Select cities"
-        value={selected}
-        onValueChange={() => setSelected}
-      >
-        <MyCheckbox color="test" name="11:00" radius="bg_sm" value={'1'}>
-          11:00
-        </MyCheckbox>
-        <MyCheckbox color="test" name="11:00" radius="bg_sm" value={'2'}>
-          12:00
-        </MyCheckbox>
-        <MyCheckbox color="test" name="11:00" radius="bg_sm" value={'3'}>
-          13:00
-        </MyCheckbox>
-      </CheckboxGroup>
+      <Card className="p-4">
+        <div className="grid grid-cols-3 gap-2">
+          {['1', '2', '3', '4'].map((value, i) => (
+            <MyCheckbox
+              key={i}
+              color="test"
+              isSelected={selected === value}
+              name="11:00"
+              radius="bg_sm"
+              size="full"
+              value={value}
+              onChange={() => setSelected(value)}
+            >
+              12:00
+            </MyCheckbox>
+          ))}
+          <p className="text-default-500 text-small">Selected: {selected}</p>
+        </div>
+      </Card>
       {/* <Loading /> */}
     </>
   );

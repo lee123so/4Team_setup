@@ -1,5 +1,10 @@
-// MyButton.tsx
-import { extendVariants, Input } from '@heroui/react';
+import { extendVariants, Input, InputProps } from '@heroui/react';
+
+type MyInputVariants = {
+  size?: 'base' | 'md' | 'xl' | 'full';
+};
+
+type MyInputProps = InputProps & MyInputVariants;
 
 export const MyInput = extendVariants(Input, {
   variants: {
@@ -21,4 +26,4 @@ export const MyInput = extendVariants(Input, {
   defaultVariants: {
     size: 'xl',
   },
-});
+}) as React.ForwardRefExoticComponent<MyInputProps>;

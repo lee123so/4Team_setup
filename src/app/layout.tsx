@@ -1,13 +1,12 @@
 import '@/styles/globals.css';
 import { Metadata, Viewport } from 'next';
-import { Link } from '@heroui/link';
 import clsx from 'clsx';
 
 import { Providers } from './providers';
 
 import { siteConfig } from '@/config/site';
-import { fontSans } from '@/config/fonts';
-import { Navbar } from '@/components/navbar';
+import { fontSans, paperlogy, pretendard } from '@/config/fonts';
+import Navbar from '@/components/templates/navbar';
 
 export const metadata: Metadata = {
   title: {
@@ -37,18 +36,17 @@ export default function RootLayout({
       <head />
       <body
         className={clsx(
-          'min-h-screen bg-background font-sans antialiased',
+          'min-h-screen bg-background font-pretendard antialiased',
           fontSans.variable,
+          pretendard.variable,
+          paperlogy.variable,
         )}
       >
         <Providers themeProps={{ attribute: 'class', defaultTheme: 'dark' }}>
           <Navbar />
-          <main className="container mx-auto max-w-7xl pt-16 px-6 flex-grow">
+          <main className="container mx-auto max-w-screen-2xl pt-16 px-6 flex-grow">
             {children}
           </main>
-
-          {/* 모달 포탈 */}
-          <div id="portal" />
         </Providers>
       </body>
     </html>

@@ -5,14 +5,18 @@ export const MyCheckbox = extendVariants(Checkbox, {
   variants: {
     color: {
       test: {
-        base: ' border-1 border-mono_200  data-[selected]:bg-main data-[selected]:text-mono_200 transition-all',
-        wrapper: ' hidden',
-        // label: 'text-mono_700 data-[selected]:text-mono_200 ',
+        base: ' border-1 block border-mono_200 m-0 max-w-full transition-all',
+        wrapper: ' hidden w-full',
+        label:
+          'text-mono_700 data-[selected]:text-mono_200 flex justify-center items-center ',
       },
     },
     size: {
       md: {
-        base: 'text-base',
+        base: 'text-base w-30',
+      },
+      full: {
+        label: 'h-3 w-full ',
       },
     },
     radius: {
@@ -32,7 +36,7 @@ export const MyCheckbox = extendVariants(Checkbox, {
     isSelected: {
       true: {
         base: 'bg-main',
-        label: 'text-mono_200',
+        label: 'text-main-foreground',
       },
     },
     isFocusVisible: {
@@ -45,7 +49,7 @@ export const MyCheckbox = extendVariants(Checkbox, {
     {
       color: 'test',
       isSelected: true,
-      className: ' font-semibold bg-main  px-2 py-1',
+      className: ' font-semibold bg-main  ',
     },
   ],
   defaultVariants: {
